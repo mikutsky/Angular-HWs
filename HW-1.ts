@@ -1,6 +1,6 @@
 // Задание №1. Функция определяет, является ли переданная строка палиндромом.
 function isPal(str: string): boolean {
-  const mirrorStr = Array.from(str)
+  const mirrorStr: string = Array.from(str)
     .reverse()
     .join("");
   return mirrorStr === str;
@@ -13,7 +13,7 @@ exmStr = "abc-12321-cba"; //это палиндром
 console.log(`"${exmStr}" it's a ${isPal(exmStr)} palindrome`);
 
 //
-// Задание №2. Функция возвращает массив чисел фидоначи, до переданного
+// Задание №2. Функция возвращает массив чисел Фибоначи, до переданного
 // в качестве аргумента числа
 function fibArr(maxN: number): Array<number> {
   if (maxN < 2) return [];
