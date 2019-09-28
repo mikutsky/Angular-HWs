@@ -1,11 +1,15 @@
-// Класс для работы c числами любой позиционной системы исчисления
-abstract class Converter implements Converter {
-  private _base: number;
-  private _numerals: Array<string>;
+// Интерфейс
+interface IConverter {
+  convertTo(n: number): string;
+  convertFrom(s: string): number;
+}
 
-  constructor();
-  constructor(base: number);
-  constructor(base: number, numerals: string);
+// Класс для работы c числами любой позиционной системы исчисления
+class Converter implements IConverter {
+  private _base: number;
+  private _numerals: string[];
+
+  constructor(base?: number, numerals?: string);
   constructor(base: number = 10, numerals: string = "0123456789ABCDEF") {
     // диапазон для базы числа от 2 до 16
     if (base < 2) this._base = 2;
@@ -20,7 +24,7 @@ abstract class Converter implements Converter {
     return this._base;
   }
 
-  // ГЕТ возвращает базу используемого числа
+  // ГЕТ возвращает цифры используемого числа
   public get getNumerals(): string {
     return this._numerals.join();
   }
@@ -35,7 +39,7 @@ abstract class Converter implements Converter {
     do {
       const numIndex: number = quot % this._base;
       rsl = this._numerals[numIndex].concat(rsl);
-      quot = (quot - (quot % this._base)) / this._base;
+      quot = (quot - numIndex) / this._base;
     } while (quot > 0);
 
     return rsl;
@@ -43,19 +47,21 @@ abstract class Converter implements Converter {
 
   // Метод конвертирует строку с числом заданного основания в десятиричное
   public convertFrom(s: string): number {
-    let str: string = Array.from(s)
+    let str: string = s
+      .split("")
       .reverse()
       .join("");
     let rsl: number = 0;
     do {
       const chrNum: string = str.slice(-1);
-      // числовое, десятиричное значение цыфры, любой регистр для букв
-      const intNum: number =
-        this._numerals.indexOf(chrNum.toUpperCase()) !== -1
-          ? this._numerals.indexOf(chrNum.toUpperCase())
-          : this._numerals.indexOf(chrNum.toLowerCase());
 
+      // числовое, десятиричное значение цифры, при любом регистре букв
+      const intUpCs: number = this._numerals.indexOf(chrNum.toUpperCase());
+      const intLwCs: number = this._numerals.indexOf(chrNum.toLowerCase());
+
+      const intNum: number = intUpCs !== -1 ? intUpCs : intLwCs;
       if (intNum === -1) return NaN;
+
       str = str.slice(0, -1);
       const dis: number = intNum * Math.pow(this._base, str.length);
       rsl += dis;
@@ -69,17 +75,14 @@ abstract class Converter implements Converter {
 
 function outResult(conv: Converter, num: number, str: string): void {
   console.log(`
-  Base is ${conv.getBase}; Numerals is ${conv.getNumerals}\n
+  Base is ${conv.getBase}; Numerals are ${conv.getNumerals}\n
   Result TO: ${num} is "${conv.convertTo(num)}"
-  Result FROM: ${str} is ${conv.convertFrom(str)}`);
+  Result FROM: "${str}" is ${conv.convertFrom(str)}`);
 }
 
 class Binary extends Converter {
   constructor() {
     super(2);
-  }
-  public convertTo(n: number): string {
-    return super.convertTo(n);
   }
 }
 
