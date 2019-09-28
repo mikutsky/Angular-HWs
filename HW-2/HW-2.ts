@@ -12,7 +12,7 @@ abstract class Converter implements Converter {
     else if (base > 16) this._base = 16;
     else this._base = base;
 
-    this._numerals = numerals.split("").slice(0,this._base);
+    this._numerals = numerals.split("").slice(0, this._base);
   }
 
   // ГЕТ возвращает базу используемого числа
@@ -67,12 +67,11 @@ abstract class Converter implements Converter {
 //
 // _____ПРОВЕРКА_____
 
-function outResult(conv:Converter, num:number, str: string):void{
-console.log(`
+function outResult(conv: Converter, num: number, str: string): void {
+  console.log(`
   Base is ${conv.getBase}; Numerals is ${conv.getNumerals}\n
   Result TO: ${num} is "${conv.convertTo(num)}"
   Result FROM: ${str} is ${conv.convertFrom(str)}`);
-
 }
 
 class Binary extends Converter {
@@ -100,9 +99,9 @@ const binary: Converter = new Binary();
 const octal: Converter = new Octal();
 const hexadec: Converter = new Hexadecimal();
 
-outResult(binary,23,"10111");
-outResult(octal,9,"11");
-outResult(hexadec,65500,"ffdc");
+outResult(binary, 23, "10111");
+outResult(octal, 9, "11");
+outResult(hexadec, 65500, "ffdc");
 
 // Дополнительно можно создавать любые эзотерические,
 // экзотические позиционные системы с одним знаком в разряде и
@@ -115,4 +114,4 @@ class OtherStyle extends Converter {
 }
 
 const otherStyle: Converter = new OtherStyle();
-outResult(otherStyle,2410,">!<^_");
+outResult(otherStyle, 2410, ">!<^_");
