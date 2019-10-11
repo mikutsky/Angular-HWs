@@ -56,22 +56,20 @@ async function mostRealMetcast(): Promise<{
   const promiseArr: Array<Function> = Array(40).fill(undefined, 0, 40);
   const promiseRes: string[] = await Promise.all(promiseArr.map(getMetcast));
 
-  // Переменные счетчика и значения наиболее встречаеммых значений погоды
-  let counter: number = 0;
-  let weather: string = "";
-  // Проходим по массиву возвращенных результатов и считаем частоту включений,
-  // если результат встречается впервые, в противном случае пропускаем
-  promiseRes.forEach((curResult: string, index: number, arr: Array<string>) => {
-    if (arr.indexOf(curResult) !== index) return;
-    const curCount: number = arr.filter((val: string) => val === curResult)
-      .length;
-    if (curCount > counter) {
-      counter = curCount;
-      weather = curResult;
-    }
+  const weatherCounter: { [key: string]: number } = {};
+
+  promiseRes.forEach((curResult: string): void => {
+    if (weatherCounter[curResult]) return;
+    weatherCounter[curResult] = promiseRes.filter(
+      (el: string) => el === curResult
+    ).length;
   });
 
-  return { weather, counter };
+  let weather: string = Object.keys(weatherCounter)[0];
+  for (const key in weatherCounter)
+    if (weatherCounter[key] > weatherCounter[weather]) weather = key;
+
+  return { weather, counter: weatherCounter[weather] };
 }
 
 // Проверка
