@@ -42,38 +42,44 @@ async function firstMetcastRequest(): Promise<string> {
 
 // Проверка
 firstMetcastRequest()
-  .then(data => console.log(`The first metcast of four: \t${data}`))
+  .then(data => console.log(`The first metcast of four: \t"${data}"`))
   .catch(err => console.log(err));
 
 // __________
 // Задание №3
 // Вызвать в паралель 40 прогнозов погоды -> дождаться всех результатов
 // и выдать самый часто встречающийся в прогнозах результат.
-async function mostRealMetcast(): Promise<string> {
+async function mostRealMetcast(): Promise<{
+  weather: string;
+  counter: number;
+}> {
   const promiseArr: Array<Function> = Array(40).fill(undefined, 0, 40);
-  const promiseResults: string[] = await Promise.all(
-    promiseArr.map(getMetcast)
-  );
+  const promiseRes: string[] = await Promise.all(promiseArr.map(getMetcast));
 
   // Переменные счетчика и значения наиболее встречаеммых значений погоды
-  let weatherCount: number = 0;
-  let mostRealWeather: string = "";
-  // Пробегаюсь по всем 40 значениям погоды и пересчитываю каждый раз,
-  // такой подход дольше но универсальней
-  promiseResults.forEach(wEl => {
-    const weatherTest: Array<string> = promiseResults.filter(
-      rEl => rEl === wEl
-    );
-    if (weatherTest.length > weatherCount) {
-      weatherCount = weatherTest.length;
-      mostRealWeather = wEl;
+  let counter: number = 0;
+  let weather: string = "";
+  // Проходим по массиву возвращенных результатов и считаем частоту включений,
+  // если результат встречается впервые, в противном случае пропускаем
+  promiseRes.forEach((curResult: string, index: number, arr: Array<string>) => {
+    if (arr.indexOf(curResult) !== index) return;
+    const curCount: number = arr.filter((val: string) => val === curResult)
+      .length;
+    if (curCount > counter) {
+      counter = curCount;
+      weather = curResult;
     }
   });
 
-  return `"${mostRealWeather}", result meets ${weatherCount} times`;
+  return { weather, counter };
 }
 
 // Проверка
 mostRealMetcast()
-  .then(data => console.log(`The most real, metcast of forty: \n${data}`))
+  .then(data =>
+    console.dir(
+      `The most real, metcast of forty:` +
+        `\n"${data.weather}" - this metcast is received ${data.counter} times`
+    )
+  )
   .catch(err => console.log(err));
