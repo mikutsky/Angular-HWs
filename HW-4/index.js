@@ -7,7 +7,7 @@ const {
   Observable: { create }
 } = require("rxjs");
 const { interval } = require("rxjs");
-const { merge, filter } = require("rxjs/operators");
+const { merge } = require("rxjs/operators");
 
 const { take, skip } = require("rxjs/operators");
 
