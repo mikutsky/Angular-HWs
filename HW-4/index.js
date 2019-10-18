@@ -9,6 +9,8 @@ const {
 const { interval } = require("rxjs");
 const { merge, filter } = require("rxjs/operators");
 
+const { take, skip } = require("rxjs/operators");
+
 // __________
 // Задание №1
 // Реализовать свой обсервер, который будет эмитить данные инкрементальные
@@ -41,14 +43,23 @@ function task1() {
 // Даны два интервала: один 100 мс, второй 300 мс -> слить их данные -> взять
 // элементы с 5 по 12.
 function task2() {
-  const interval100ms = interval(100);
-  const interval300ms = interval(300)
-    .pipe(merge(interval100ms))
-    .pipe(filter(value => value >= 5 && value <= 12));
+  const interval100ms = interval(100)
+    .pipe(take(12))
+    .pipe(skip(5));
 
-  interval300ms.subscribe(val => {
-    console.log(val);
-  });
+  const interval300ms = interval(300)
+    .pipe(take(12))
+    .pipe(skip(5))
+
+    .pipe(merge(interval100ms));
+
+  interval300ms.subscribe(
+    val => {
+      console.log(val);
+    },
+    err => {},
+    () => console.log(`"Merge intervals" is completed...`)
+  );
 }
 
 // __________
@@ -107,7 +118,7 @@ function task5() {
 // ПРОВЕРКА
 
 // task1();
-// task2();
+task2();
 // task3();
 // task4();
-task5();
+// task5();
