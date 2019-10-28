@@ -1,12 +1,8 @@
 import { Component, Input } from "@angular/core";
-interface IImageRec {
-  src: string;
-  alt?: string;
-  title?: string;
-}
+import { IImageRec } from "../interfaces/intrfaces";
 
 @Component({
-  selector: "img-viewer",
+  selector: "img-viewer-component",
   template: `
     <div class="img-viewer-container">
       <img
@@ -17,8 +13,8 @@ interface IImageRec {
       />
     </div>
   `,
-  styleUrls: ["./img.viewer.css"]
+  styleUrls: ["./img.viewer.component.css"]
 })
-export class ImgViewer {
+export class ImgViewerComponent {
   @Input() public image: IImageRec;
 }

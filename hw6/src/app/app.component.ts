@@ -4,8 +4,8 @@ import { Component } from "@angular/core";
   selector: "app-root",
   template: `
     <h1>Homework №{{ hwNumber }}</h1>
-    <task-text></task-text>
-    <img-control></img-control>
+    <task-text-component></task-text-component>
+    <img-control-component></img-control-component>
   `,
   styleUrls: ["./app.component.css"]
 })
