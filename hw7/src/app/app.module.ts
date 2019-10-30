@@ -7,7 +7,7 @@ import { ImgViewerComponent } from "./img.viewer.component/img.viewer.component"
 import { ImgGalleryComponent } from "./img.gallery.component/img.gallery.component";
 import { ImgControlComponent } from "./img.control.component/img.control.component";
 
-import { ImageService } from "./image.service";
+import { ImageService } from "./services/image.service";
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { ImageService } from "./image.service";
     TaskTextComponent,
     ImgViewerComponent,
     ImgGalleryComponent,
-    ImgControlComponent,
+    ImgControlComponent
   ],
   imports: [BrowserModule],
   providers: [ImageService],

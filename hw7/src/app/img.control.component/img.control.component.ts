@@ -1,44 +1,48 @@
-import { Component } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { IImageRec } from "../interfaces/intrfaces";
+import { ImageService } from "../services/image.service";
 
 @Component({
   selector: "img-control-component",
   template: `
     <div class="img-control">
-      <img-viewer-component [image]="selectedImg"></img-viewer-component>
+      <img-viewer-component [image]="viewerImg"></img-viewer-component>
       <img-gallery-component
-        [imageCollection]="preview"
-        (onSelectImage)="handler($event)"
+        [imageCollection]="galleryImg"
+        (onSelectImage)="handlerSelectImg($event)"
       ></img-gallery-component>
     </div>
   `,
   styleUrls: ["./img.control.component.css"]
 })
-export class ImgControlComponent {
-  public selectedImg: IImageRec = { src: "", alt: "", title: "" };
-  public preview: IImageRec[] = [
-    {
-      src: "/assets/img.viewer/photo-01.jpg",
-      alt: "Photo preview 1",
-      title: "Photo title #1"
-    },
-    {
-      src: "/assets/img.viewer/photo-02.jpg",
-      alt: "Photo preview 2",
-      title: "Photo title #2"
-    },
-    {
-      src: "/assets/img.viewer/photo-03.jpg",
-      alt: "Photo preview 3",
-      title: "Photo title #3"
-    },
-    {
-      src: "/assets/img.viewer/photo-04.jpg",
-      alt: "Photo preview 4",
-      title: "Photo title #4"
-    }
-  ];
-  public handler($event: IImageRec): void {
-    this.selectedImg = $event;
+export class ImgControlComponent implements OnInit, OnDestroy {
+  public galleryImg: IImageRec[] = this.imageService.randomGalleryImages();
+  public viewerImg: IImageRec = this.imageService.randomViewerImage();
+  // Сообщаем сервису, что выбранно изображение из галлереи, и загружаем его во вьювер
+  public handlerSelectImg($event: IImageRec): void {
+    this.imageService.viewerImage = $event;
+    this.viewerImg = this.imageService.viewerImage;
+  }
+
+  constructor(private imageService: ImageService) {}
+
+  ngOnInit(): void {
+    // Подпишемся на событие обновления галлереи
+    this.imageService.sourceGalleryImages.subscribe(
+      (dataGalleryImg: IImageRec[]) => {
+        this.galleryImg = dataGalleryImg;
+      }
+    );
+    // Подпишемся на событие обновления просмоторщика
+    this.imageService.sourceViewerImage.subscribe(
+      (dataViewerImg: IImageRec) => {
+        this.viewerImg = dataViewerImg;
+      }
+    );
+  }
+  // Отпишемся от события обновления просмоторщика и галлереи
+  ngOnDestroy(): void {
+    this.imageService.sourceGalleryImages.unsubscribe();
+    this.imageService.sourceViewerImage.unsubscribe();
   }
 }

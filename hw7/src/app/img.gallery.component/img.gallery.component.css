@@ -11,8 +11,7 @@
 }
 
 .img-gallery-picture {
-  /* background: url("/assets/img.viewer/img.viewer.empty.jpg") center; */
-  background-size: cover;
   width: 140px;
   height: 140px;
+  object-fit: cover;
 }
