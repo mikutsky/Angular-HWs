@@ -1,24 +1,20 @@
 import { Component } from "@angular/core";
-interface IImageRec {
-  src: string;
-  alt?: string;
-  title?: string;
-}
+import { IImageRec } from "../interfaces/intrfaces";
 
 @Component({
-  selector: "img-control",
+  selector: "img-control-component",
   template: `
     <div class="img-control">
-      <img-viewer [image]="selectedImg"></img-viewer>
-      <img-gallery
+      <img-viewer-component [image]="selectedImg"></img-viewer-component>
+      <img-gallery-component
         [imageCollection]="preview"
         (onSelectImage)="handler($event)"
-      ></img-gallery>
+      ></img-gallery-component>
     </div>
   `,
-  styleUrls: ["./img.control.css"]
+  styleUrls: ["./img.control.component.css"]
 })
-export class ImgControl {
+export class ImgControlComponent {
   public selectedImg: IImageRec = { src: "", alt: "", title: "" };
   public preview: IImageRec[] = [
     {
