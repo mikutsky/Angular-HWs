@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  template: `
+    <h1>Homework №{{ hwNumber }}</h1>
+    <task-text-component></task-text-component>
+
+    <div class="container">
+      <text-transform></text-transform>
+    </div>
+  `
 })
 export class AppComponent {
-  title = 'hw8';
+  public hwNumber: number = 8;
 }
