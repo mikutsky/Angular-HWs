@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "task-text",
+  selector: "task-text-component",
   template: `
     <div>
       <h4>Создать три компонента:</h4>
@@ -21,4 +21,4 @@ import { Component } from "@angular/core";
     </div>
   `
 })
-export class TaskText {}
+export class TaskTextComponent {}
