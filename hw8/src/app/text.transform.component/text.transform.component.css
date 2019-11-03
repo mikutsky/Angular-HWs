@@ -1,0 +1,28 @@
+.text-transform-container {
+  background-color: whitesmoke;
+  padding: 1em;
+  margin: 0.5em 0em;
+}
+
+.text-transform-title {
+  color: darkgray;
+  margin-top: 0em;
+}
+
+.text-transform-input {
+  width: 100%;
+  max-width: 24em;
+  margin: 0.75em;
+}
+
+.text-transform-send {
+  width: 100%;
+  max-width: 12em;
+  margin: 0.75em;
+}
+
+.text-transform-result {
+  font-weight: bolder;
+  font-size: xx-large;
+  margin: 0.75em;
+}
