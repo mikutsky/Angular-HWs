@@ -33,5 +33,6 @@ export class ImgGalleryComponent {
 
   public clickHandle(numImage: number): void {
     store.dispatch({ type: SELECT_IMAGE, index: numImage });
+    store.getState().resetIntervalNext(store);
   }
 }

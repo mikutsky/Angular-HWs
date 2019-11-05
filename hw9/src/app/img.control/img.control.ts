@@ -20,5 +20,6 @@ export class ImgControlComponent implements OnInit {
 
   public ngOnInit(): void {
     store.dispatch({ type: REFRESH_ALL });
+    store.getState().resetIntervalNext(store);
   }
 }

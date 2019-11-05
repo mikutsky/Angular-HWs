@@ -36,7 +36,6 @@ export class ImgViewerComponent {
     store.subscribe(() => {
       this.image = store.getState().gallery[store.getState().selectIndex];
     });
-    store.getState().resetIntervalNext(store);
   }
 
   public controlHandle(action: String) {
