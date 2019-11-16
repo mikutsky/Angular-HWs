@@ -1,0 +1,20 @@
+<div class="item-user" *ngFor="let item of personList" data-id="{{ item.id }}">
+  <a rout=""></a>
+  <img
+    class="logo"
+    [src]="item.src"
+    [alt]="item.nickname"
+    [title]="item.name + ' ' + item.surename"
+  />
+  <div class="info">
+    <h3>{{ item.name }} {{ item.surename }}</h3>
+    <h4>{{ item.subscriben }}</h4>
+    <div class="index-user">
+      <span>FOLLOWERS</span>
+      <span class="index-user-value">164</span>
+    </div>
+    <button type="button" class="button-user primary">
+      Follow me
+    </button>
+  </div>
+</div>

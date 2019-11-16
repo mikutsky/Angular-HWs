@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.container {
+  width: 1232px;
+  margin: auto;
+}

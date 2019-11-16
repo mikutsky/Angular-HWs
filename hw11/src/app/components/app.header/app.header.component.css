@@ -1,0 +1,35 @@
+:host {
+  width: 100%;
+  height: 100%;
+  border-bottom: var(--main-decore-thickness) solid var(--main-decore-color);
+}
+
+.header {
+  width: var(--main-width);
+  height: 156px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  margin: 0;
+}
+
+.header-search {
+  margin: 0 0 0 96px;
+}
+
+.header-tools {
+  margin: 0 16px 0 auto;
+}
+
+.header-user {
+  width: 192px;
+  text-align: center;
+}
+
+h4 {
+  font-weight: normal;
+  padding-bottom: 6px;
+}
