@@ -1,0 +1,28 @@
+.login-form {
+  width: 814px;
+  height: 556px;
+  border: var(--main-decore-color) var(--main-decore-thickness) solid;
+  border-radius: 26px;
+  margin: 72px auto;
+}
+
+.login-form-block {
+  margin: 52px 104px;
+}
+
+.login-form-block h3 {
+  color: var(--main-decore-color);
+  display: inline-block;
+  font-size: 18px;
+}
+
+.login-form-block h3:first-child {
+  width: 172px;
+  margin-right: 104px;
+}
+
+.login-form-block h3:last-child {
+  width: 120px;
+  text-align: right;
+  float: right;
+}

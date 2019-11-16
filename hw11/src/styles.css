@@ -1,0 +1,194 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --main-width: 1232px;
+
+  --main-color-A: #374a5d;
+  --main-color-B: #697886;
+  --main-color-C: #9ba5ae;
+  --main-color-D: #cdd2d7;
+  --main-color-E: #e1e4e7;
+  --main-color-F: #f5f6f7;
+  --main-color-H: #b7cb3f;
+  --main-color-I: #97b000;
+
+  --main-bg-color: white;
+  --main-title-color: var(--main-color-A);
+  --main-text-color: var(--main-color-B);
+  --main-a-color: var(--main-color-A);
+  --main-a-color-hover: var(--main-color-B);
+  --main-a-color-visited: var(--main-color-A);
+  --footer-text-color: var(--main-color-F);
+  --footer-a-color: var(--main-color-F);
+  --footer-a-color-hover: var(--main-color-A);
+  --footer-a-color-visited: var(--main-color-F);
+
+  --button-primary-color-static: var(--main-color-H);
+  --button-primary-color-hover: var(--main-color-I);
+  --button-primary-color-click: var(--main-color-H);
+  --button-outline-primary-color-static: var(--main-bg-color);
+  --button-outline-primary-color-hover: var(--main-color-I);
+  --button-outline-primary-color-click: var(--main-color-H);
+  --button-outline-primary-decore-color-static: var(--main-color-H);
+  --button-outline-primary-decore-color-hover: var(--main-color-I);
+  --button-outline-primary-decore-color-click: var(--main-color-H);
+  --button-outline-secondary-color-static: var(--main-bg-color);
+  --button-outline-secondary-color-hover: var(--main-color-D);
+  --button-outline-secondary-color-click: var(--main-bg-color);
+  --button-outline-secondary-decore-color-static: var(--main-color-D);
+  --button-outline-secondary-decore-color-hover: var(--main-color-D);
+  --button-outline-secondary-decore-color-click: var(--main-color-D);
+
+  --caption-color-enable: var(--main-color-B);
+  --caption-color-disable: var(--main-color-E);
+
+  --main-decore-thickness: 2px;
+  --main-decore-color: var(--main-color-E);
+  --main-footer-bg-color: var(--main-color-C);
+
+  --main-h1-font: normal 48px "Baloo Chettan", sans-serif;
+  --main-h2-font: normal 36px "Baloo Chettan", sans-serif;
+  --main-h3-font: bold 32px "Kodchasan", sans-serif;
+  --main-h4-font: bold 24px "Nunito", sans-serif;
+  --main-h5-font: normal 24px "Nunito", sans-serif;
+  --main-h6-font: bold 18px "Nunito", sans-serif;
+
+  --main-text-font: normal 18px "Nunito", sans-serif;
+  --caption-font: bold 18px "Kodchasan", sans-serif;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  font: var(--main-text-font);
+  margin: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h5 {
+  color: var(--main-title-color);
+}
+
+h4,
+h6 {
+  color: var(--main-text-color);
+}
+
+h1 {
+  font: var(--main-h1-font);
+}
+
+h2 {
+  font: var(--main-h2-font);
+}
+
+h3 {
+  font: var(--main-h3-font);
+}
+
+h4 {
+  font: var(--main-h4-font);
+}
+
+h5 {
+  font: var(--main-h5-font);
+}
+
+h6 {
+  font: var(--main-h6-font);
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-a-color);
+}
+
+a:link {
+  color: var(--main-a-color-visited);
+}
+
+a:hover {
+  color: var(--main-a-color-hover);
+}
+
+button {
+  min-height: 52px;
+  outline: none;
+  border: none;
+  border-radius: 26px;
+  font: var(--caption-font);
+  margin: 0;
+  padding: 0 26px;
+}
+
+button.primary {
+  background-color: var(--button-primary-color-static);
+  color: var(--main-bg-color);
+}
+
+button.primary:hover {
+  background-color: var(--button-primary-color-hover);
+}
+
+button.primary:active {
+  background-color: var(--button-primary-color-click);
+}
+
+button.outline-primary {
+  background-color: var(--button-outline-primary-color-static);
+  color: var(--caption-font);
+  border: var(--button-outline-primary-decore-color-static) solid
+    var(--main-decore-thickness);
+}
+
+button.outline-primary:hover {
+  background-color: var(--button-outline-primary-color-hover);
+  color: var(--main-bg-color);
+  border: none;
+}
+
+button.outline-primary:active {
+  background-color: var(--button-outline-primary-color-click);
+  color: var(--main-bg-color);
+  border: none;
+}
+
+button.outline-secondary {
+  background-color: var(--button-outline-secondary-color-static);
+  color: var(--caption-font);
+  border: var(--button-outline-secondary-decore-color-static) solid
+    var(--main-decore-thickness);
+}
+
+button.outline-secondary:hover {
+  background-color: var(--button-outline-secondary-color-hover);
+  color: var(--main-bg-color);
+  border: none;
+}
+
+button.outline-secondary:active {
+  background-color: var(--button-outline-secondary-color-click);
+  color: var(--caption-font);
+  border: var(--button-outline-secondary-decore-color-click) solid
+    var(--main-decore-thickness);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}

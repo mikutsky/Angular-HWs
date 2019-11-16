@@ -1,0 +1,17 @@
+<footer class="footer">
+  <div class="footer-col-reference" *ngFor="let refCol of referenceColumns">
+    <h4>{{ refCol.title }}</h4>
+    <ul>
+      <li *ngFor="let ref of refCol.references">
+        <a [routerLink]="ref.href">{{ ref.link }}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="footer-col-subscribe">
+    <logo-small></logo-small>
+    <h6>{{ subscribe.rights }}</h6>
+    <h6>
+      <a [routerLink]="subscribe.href">{{ subscribe.developers }}</a>
+    </h6>
+  </div>
+</footer>
