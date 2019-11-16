@@ -1,7 +1,5 @@
 import { Directive, OnInit, HostListener, ElementRef } from "@angular/core";
 
-const { setTimeout } = window;
-
 @Directive({
   selector: "[searchBox]"
 })
@@ -26,18 +24,20 @@ export class SearchBoxDirective implements OnInit {
     this._elHelper.style.display = this._elHelperInvisible;
   }
 
-  @HostListener("focusin")
-  public focusinHandler(): void {
-    this._elSearch.style.borderRadius = this._modifyBorderRadius;
-    this._elHelper.style.display = this._elHelperVisible;
+  @HostListener("click", ['$event'])
+  public focusinHandler({ target }: Event): void {
+    this.toggle(target === this._elSearch);
   }
 
-  @HostListener("focusout")
-  public focusoutHandler(): void {
-    // Мой постыдный костыль!
-    setTimeout(() => {
-      this._elSearch.style.borderRadius = this._defaultBorderRadius;
-      this._elHelper.style.display = this._elHelperInvisible;
-    }, 500);
+  @HostListener('document:click', ['$event'])
+  onDocumentClick({ target }: Event): void {
+    if (!(target as HTMLElement).closest('[searchBox]')) {
+      this.toggle(false);
+    }
+  }
+
+  private toggle(isOpen: boolean): void {
+    this._elSearch.style.borderRadius =  isOpen ? this._modifyBorderRadius : this._defaultBorderRadius;
+    this._elHelper.style.display = isOpen ? this._elHelperVisible : this._elHelperInvisible;
   }
 }

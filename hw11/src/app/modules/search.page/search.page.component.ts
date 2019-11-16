@@ -1,33 +1,35 @@
-import { Component } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { SearchService, IPerson } from "src/app/services/search.service";
-import { HostListener } from "@angular/core";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "search-page",
   templateUrl: "./search.page.component.html",
   styleUrls: ["./search.page.component.css"]
 })
-export class SearchPageComponent {
+export class SearchPageComponent implements OnInit, OnDestroy {
   public personList: Array<IPerson>;
   public searchText: string;
+  private subscription = Subscription.EMPTY;
 
   constructor(
     private searchService: SearchService,
-    private activateRoute: ActivatedRoute,
-    private router: Router
+    private activateRoute: ActivatedRoute
   ) {
-
-    this.searchText = activateRoute.snapshot.queryParams["q"];
-    searchService
-      .searchPerson(10, this.searchText)
-      .subscribe((data: Array<IPerson>) => (this.personList = data));
   }
 
-  public onRelod() {}
+  ngOnInit(): void {
+    this.subscription = this.activateRoute.queryParamMap
+      .subscribe(queryParams => {
+        const q = queryParams.get('q');
+        this.searchService
+          .searchPerson(10, q)
+          .subscribe((data: Array<IPerson>) => (this.personList = data));
+      });
+  }
 
-  @HostListener("onload")
-  public onloadHandle(): void {
-    console.log("asd");
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
