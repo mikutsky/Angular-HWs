@@ -26,13 +26,31 @@ export class ImgGalleryComponent {
   public gallery: IImageRec[];
 
   constructor() {
-    store.subscribe(() => {
-      this.gallery = store.getState().gallery;
-    });
+    this.gallery = [
+      {
+        src: "./assets/img.service/photo-01.jpg",
+        alt: "Alt-1",
+        title: "Title-1"
+      },
+      {
+        src: "./assets/img.service/photo-02.jpg",
+        alt: "Alt-2",
+        title: "Title-2"
+      },
+      {
+        src: "./assets/img.service/photo-03.jpg",
+        alt: "Alt-3",
+        title: "Title-3"
+      },
+      {
+        src: "./assets/img.service/photo-04.jpg",
+        alt: "Alt-4",
+        title: "Title-4"
+      }
+    ];
   }
 
   public clickHandle(numImage: number): void {
-    store.dispatch({ type: SELECT_IMAGE, index: numImage });
-    store.getState().resetIntervalNext(store);
+    store.dispatch({ type: SELECT_IMAGE, image: this.gallery[numImage] });
   }
 }
