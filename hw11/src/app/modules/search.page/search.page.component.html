@@ -23,3 +23,7 @@
     </button>
   </div>
 </div>
+<div *ngIf="!personList||personList.length===0" class="info">
+  <h1>Who is it?</h1>
+  <h4>People not found</h4>
+</div>

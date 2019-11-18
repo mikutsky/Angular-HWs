@@ -1,0 +1,6 @@
+<div *ngIf="photo.id !== 'empty'" class="photo-card-view">
+  <img [src]="photo.src" [alt]="photo.name" />
+</div>
+<div *ngIf="photo.id === 'empty'" class="photo-card-view">
+  <div></div>
+</div>

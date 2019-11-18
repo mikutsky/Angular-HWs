@@ -6,7 +6,9 @@ import { Component } from "@angular/core";
   styleUrls: ["./login.page.component.css"]
 })
 export class LoginPageComponent {
+  public password: string;
+
   public onLogin(): void {
-    console.log("тут будет логин");
+    console.log("тут происходит авторизация");
   }
 }

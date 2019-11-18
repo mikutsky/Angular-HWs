@@ -22,9 +22,8 @@ import { HomePageModule } from "./modules/home.page/home.page.module";
 import { LoginPageModule } from "./modules/login.page/login.page.module";
 import { SearchPageModule } from "./modules/search.page/search.page.module";
 import { UserPageModule } from "./modules/user.page/user.page.module";
+import { GalleryModule } from "./modules/gallery/gallery.module";
 import { NoPageModule } from "./modules/404.page/404.page.module";
-
-import { PaswordPipe } from "./pipes/password.pipe";
 
 @NgModule({
   declarations: [
@@ -38,7 +37,6 @@ import { PaswordPipe } from "./pipes/password.pipe";
     SearchBoxDirective,
     ToolBarComponent,
     SearchBoxComponent,
-    PaswordPipe,
 
     ToolButtonDirective
   ],
@@ -51,6 +49,7 @@ import { PaswordPipe } from "./pipes/password.pipe";
     LoginPageModule,
     SearchPageModule,
     UserPageModule,
+    GalleryModule,
     NoPageModule
   ],
   providers: [SearchService],

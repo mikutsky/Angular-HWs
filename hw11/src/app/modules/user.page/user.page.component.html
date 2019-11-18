@@ -39,11 +39,12 @@
   <div class="block-photo">
     <div *ngFor="let photo of photos" class="photo-card">
       <div class="photo-card-preview">
-        <img
-          [src]="photo.src"
-          [alt]="person.nickname"
-          [title]="person.name + ' ' + person.surename"
-        />
+        <a [routerLink]="['/gallery']">
+          <img
+            [src]="photo.src"
+            [alt]="person.nickname"
+            [title]="person.name + ' ' + person.surename"
+        /></a>
       </div>
       <div class="photo-card-title">
         <h4>NAME</h4>

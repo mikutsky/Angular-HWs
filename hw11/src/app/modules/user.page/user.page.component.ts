@@ -2,14 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { SearchService, IPerson } from "src/app/services/search.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
-
-//пока нет сервиса рботы с фтоальбомами
-interface IPhoto {
-  id: string;
-  src: string;
-  name?: string;
-  data?: string;
-}
+import { IPhoto } from "../../interfaces/photo.interface";
 
 @Component({
   selector: "user-page",
@@ -42,15 +35,14 @@ export class UserPageComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    this.photos=this.photos.map(
-      (el: IPhoto, i: number): IPhoto => ({
+    this.photos = this.photos.map(
+      (_: IPhoto, i: number): IPhoto => ({
         name: "Name " + i.toString(),
-        src: `./assets/photos/photo-${("0"+i.toString()).slice(-2)}.jpg`,
+        src: `./assets/photos/photo-${("0" + i.toString()).slice(-2)}.jpg`,
         id: i.toString(),
         data: "01-02-23"
       })
     );
-    console.log(this.photos[1].src);
   }
 
   ngOnInit(): void {
