@@ -13,6 +13,7 @@ import { ToolBarComponent } from "./components/tool.bar/tool.bar.component";
 import { SearchBoxComponent } from "./components/search.box/search.box.component";
 
 import { SearchService } from "./services/search.service";
+
 import { SearchBoxDirective } from "./directives/search.box.directive";
 import { ToolButtonDirective } from "./directives/tool.button.directive";
 
@@ -20,7 +21,10 @@ import { AppRoutingModule } from "./app.routing.module";
 import { HomePageModule } from "./modules/home.page/home.page.module";
 import { LoginPageModule } from "./modules/login.page/login.page.module";
 import { SearchPageModule } from "./modules/search.page/search.page.module";
+import { UserPageModule } from "./modules/user.page/user.page.module";
 import { NoPageModule } from "./modules/404.page/404.page.module";
+
+import { PaswordPipe } from "./pipes/password.pipe";
 
 @NgModule({
   declarations: [
@@ -34,6 +38,7 @@ import { NoPageModule } from "./modules/404.page/404.page.module";
     SearchBoxDirective,
     ToolBarComponent,
     SearchBoxComponent,
+    PaswordPipe,
 
     ToolButtonDirective
   ],
@@ -45,6 +50,7 @@ import { NoPageModule } from "./modules/404.page/404.page.module";
     HomePageModule,
     LoginPageModule,
     SearchPageModule,
+    UserPageModule,
     NoPageModule
   ],
   providers: [SearchService],

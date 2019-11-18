@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { SearchService, IPerson } from "src/app/services/search.service";
 import { Subscription } from "rxjs";
 
@@ -10,29 +10,38 @@ import { Subscription } from "rxjs";
 })
 export class SearchPageComponent implements OnInit, OnDestroy {
   public personList: Array<IPerson>;
-  private _urlSubscription: Subscription;
+  private _subscription = Subscription.EMPTY;
 
-  public reloadSearchContent(searchText: string): void {
-    this.searchService
-      .searchPerson(10, searchText)
-      .subscribe((data: Array<IPerson>) => (this.personList = data));
+  public reloadContent(q: string = ""): void {
+    let reloadPerson: Array<IPerson> = [];
+    this.searchService.searchPerson(q).subscribe(
+      (data: Array<IPerson>): void => {
+        reloadPerson = data;
+      },
+      err => {
+        console.log(err);
+      },
+      () => (this.personList = reloadPerson)
+    );
   }
 
   constructor(
     private searchService: SearchService,
-    private activateRoute: ActivatedRoute,
-    private router: Router
+    private activateRoute: ActivatedRoute
   ) {
-    this.reloadSearchContent(this.activateRoute.snapshot.queryParams["q"]);
+    this.reloadContent();
   }
 
-  public ngOnInit(): void {
-    this._urlSubscription = this.router.events.subscribe(event => {
-      this.reloadSearchContent(this.activateRoute.snapshot.queryParams["q"]);
-    });
+  ngOnInit(): void {
+    this._subscription = this.activateRoute.queryParamMap.subscribe(
+      queryParams => {
+        const q = queryParams.get("q");
+        this.reloadContent(q);
+      }
+    );
   }
 
-  public ngOnDestroy(): void {
-    this._urlSubscription.unsubscribe();
+  ngOnDestroy(): void {
+    this._subscription.unsubscribe();
   }
 }

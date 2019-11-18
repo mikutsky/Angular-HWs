@@ -4,6 +4,7 @@
     placeholder="Search"
     [(ngModel)]="searchText"
     (ngModelChange)="onChange()"
+    (keydown.enter)="onSearch()"
   />
   <div toolButton class="search-btn" (click)="onSearch()">
     <img src="assets/btn-search.png" alt="Settings" />

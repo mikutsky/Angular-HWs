@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { SearchService, IPerson } from "src/app/services/search.service";
-import { Router, Event } from "@angular/router";
+import { Router, Event, NavigationEnd } from "@angular/router";
 import { Subscription } from "rxjs";
 
 const { clearTimeout, setTimeout } = window;
@@ -20,7 +20,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   private _changeInterval: number;
   private _hintCount: number;
   private _controledURL: string;
-  private _urlSubscription: Subscription;
+  private _subscription: Subscription;
 
   public searchText: string;
   public hintList: Array<IHelpItem>;
@@ -31,12 +31,18 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   }
 
   private _reloadHint(): void {
-    this.searchService.searchPerson(this._hintCount, this.searchText).subscribe(
-      (data: Array<IPerson>) =>
-        (this.hintList = data.map((person: IPerson) => ({
+    let reloadHint: Array<IHelpItem> = [];
+    this.searchService.searchPerson(this.searchText, this._hintCount).subscribe(
+      (data: Array<IPerson>) => {
+        reloadHint = data.map((person: IPerson) => ({
           text: `${person.name} ${person.surename}`,
           href: person.url
-        })))
+        }));
+      },
+      err => {
+        console.log(err);
+      },
+      () => (this.hintList = reloadHint)
     );
   }
 
@@ -51,8 +57,6 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   }
 
   public onSearch(): void {
-    // Как перезагрузить страницу с другими параметрами?
-    // все найденные мной методы - странные
     this.router.navigate([this._controledURL], {
       queryParams: {
         q: this.searchText
@@ -71,13 +75,17 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this._urlSubscription = this.router.events.subscribe((event: Event) => {
-      // буду очищать this.SearchText, когда уходим с /search
-      // console.log(this.router.url.slice(1,this._controledURL.length+1));
+    this._subscription = this.router.events.subscribe((event: Event) => {
+      const searchURL = `/${this._controledURL}?q=`;
+      const url = this.router.url.slice(0, searchURL.length);
+
+      if (event instanceof NavigationEnd && url !== searchURL)
+        this.searchText = "";
+      this.onChange();
     });
   }
 
   public ngOnDestroy(): void {
-    this._urlSubscription.unsubscribe();
+    this._subscription.unsubscribe();
   }
 }

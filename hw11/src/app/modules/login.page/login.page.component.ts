@@ -5,4 +5,8 @@ import { Component } from "@angular/core";
   templateUrl: "./login.page.component.html",
   styleUrls: ["./login.page.component.css"]
 })
-export class LoginPageComponent {}
+export class LoginPageComponent {
+  public onLogin(): void {
+    console.log("тут будет логин");
+  }
+}

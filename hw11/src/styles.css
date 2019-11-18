@@ -130,6 +130,7 @@ button {
   font: var(--caption-font);
   margin: 0;
   padding: 0 26px;
+  cursor: pointer;
 }
 
 button.primary {

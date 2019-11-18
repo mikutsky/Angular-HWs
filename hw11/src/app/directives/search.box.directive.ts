@@ -1,6 +1,5 @@
 import { Directive, OnInit, HostListener, ElementRef } from "@angular/core";
-
-const { setTimeout } = window;
+import { Subscription } from "rxjs";
 
 @Directive({
   selector: "[searchBox]"
@@ -15,6 +14,8 @@ export class SearchBoxDirective implements OnInit {
   private _elHelperInvisible: string = "none";
   private _elHelperVisible: string = "block";
 
+  private _subscription = Subscription.EMPTY;
+
   constructor({ nativeElement: element }: ElementRef) {
     this._element = element;
   }
@@ -26,18 +27,28 @@ export class SearchBoxDirective implements OnInit {
     this._elHelper.style.display = this._elHelperInvisible;
   }
 
-  @HostListener("focusin")
-  public focusinHandler(): void {
-    this._elSearch.style.borderRadius = this._modifyBorderRadius;
-    this._elHelper.style.display = this._elHelperVisible;
+  // Получен фокус каким-то элементом.
+  // Работает так же при получении фокуса с помощью Tab.
+  @HostListener("document:focusin")
+  public onSearchFocusin(): void {
+    this.toggle();
   }
 
-  @HostListener("focusout")
-  public focusoutHandler(): void {
-    // Мой постыдный костыль!
-    setTimeout(() => {
-      this._elSearch.style.borderRadius = this._defaultBorderRadius;
-      this._elHelper.style.display = this._elHelperInvisible;
-    }, 500);
+  // Получен клик каким-то элементом.
+  // с target - работает не всегда. Элемент, получивший фокус, не всегда тот
+  // элемент, на котором сработал клик. Поэтому фокус проверяю явно в toogle()
+  @HostListener("document:click")
+  onDocumentClick(): void {
+    this.toggle();
+  }
+
+  private toggle(): void {
+    const isOpen = document.activeElement === this._elSearch;
+    this._elSearch.style.borderRadius = isOpen
+      ? this._modifyBorderRadius
+      : this._defaultBorderRadius;
+    this._elHelper.style.display = isOpen
+      ? this._elHelperVisible
+      : this._elHelperInvisible;
   }
 }

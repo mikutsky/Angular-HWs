@@ -4,4 +4,16 @@
     <h3>No account here?</h3>
     <h3><a href="">Register now</a></h3>
   </div>
+  <div class="info-buttons">
+    <input type="login" placeholder="Login" (keydown.enter)="onLogin()" />
+    <input type="password" placeholder="*****" (keydown.enter)="onLogin()" />
+  </div>
+  <div class="info-buttons">
+    <button type="button" class="button-user primary" (click)="onLogin()">
+      Login
+    </button>
+    <button type="button" class="button-user outline-primary">
+      Register now
+    </button>
+  </div>
 </div>
