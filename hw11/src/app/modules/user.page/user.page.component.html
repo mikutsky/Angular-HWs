@@ -1,0 +1,59 @@
+<div *ngIf="person">
+  <div class="persone-title">
+    <h3>{{ person.name }} {{ person.surename }}</h3>
+    <h5>{{ person.subscriben }}</h5>
+  </div>
+
+  <a [routerLink]="['/user']" [queryParams]="{ id: person.id }">
+    <img
+      class="logo"
+      [src]="person.src"
+      [alt]="person.nickname"
+      [title]="person.name + ' ' + person.surename"
+    />
+  </a>
+  <div class="info-state-value">
+    <span>{{ person.photos }}</span>
+    <span>{{ person.followers }}</span>
+    <span>{{ person.followings }}</span>
+    <span>{{ person.likes }}</span>
+  </div>
+  <div class="info-state-caption">
+    <h6>PHOTOS</h6>
+    <h6>FOLLOWERS</h6>
+    <h6>FOLLOWINGS</h6>
+    <h6>LIKES</h6>
+  </div>
+  <div class="info-buttons">
+    <button type="button" class="button-user primary">
+      Follow me
+    </button>
+    <button type="button" class="button-user outline-primary">
+      Text me
+    </button>
+  </div>
+  <h1 class="title-block">
+    PHOTOS
+    <span class="title-block-line"></span>
+  </h1>
+  <div class="block-photo">
+    <div *ngFor="let photo of photos" class="photo-card">
+      <div class="photo-card-preview">
+        <a [routerLink]="['/gallery']">
+          <img
+            [src]="photo.src"
+            [alt]="person.nickname"
+            [title]="person.name + ' ' + person.surename"
+        /></a>
+      </div>
+      <div class="photo-card-title">
+        <h4>NAME</h4>
+        <h6>DATA</h6>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!person">
+  <h1>Who is it?</h1>
+  <h4>Page not found</h4>
+</div>

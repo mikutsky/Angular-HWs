@@ -1,0 +1,29 @@
+<div class="item-user" *ngFor="let item of personList" [attr.data-id]="item.id">
+  <a [routerLink]="['/user']" [queryParams]="{ id: item.id }">
+    <img
+      class="logo"
+      [src]="item.src"
+      [alt]="item.nickname"
+      [title]="item.name + ' ' + item.surename"
+    />
+  </a>
+  <div class="info">
+    <h3>
+      <a [routerLink]="['/user']" [queryParams]="{ id: item.id }">
+        {{ item.name }} {{ item.surename }}
+      </a>
+    </h3>
+    <h4>{{ item.subscriben }}</h4>
+    <div class="index-user">
+      <span>FOLLOWERS</span>
+      <span class="index-user-value">{{ item.followers }}</span>
+    </div>
+    <button type="button" class="button-user primary">
+      Follow me
+    </button>
+  </div>
+</div>
+<div *ngIf="!personList||personList.length===0" class="info">
+  <h1>Who is it?</h1>
+  <h4>People not found</h4>
+</div>

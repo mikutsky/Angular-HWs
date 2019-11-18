@@ -1,0 +1,62 @@
+:host {
+  display: block;
+}
+
+.item-user {
+  width: 624px;
+  margin: 52px auto;
+  padding: 46px 0;
+  display: flex;
+}
+
+.logo {
+  width: 208px;
+  height: 208px;
+  border-radius: 104px;
+  margin: 0;
+  padding: 0;
+}
+
+.info {
+  margin-left: 104px;
+}
+
+h3 {
+  min-height: 32px;
+  font-size: 24px;
+}
+
+h4 {
+  min-height: 24px;
+  font-size: 18px;
+  font-weight: normal;
+  padding-top: 8px;
+}
+
+.index-user {
+  width: 192px;
+  min-height: 24px;
+  margin: 24px 0;
+}
+
+.index-user-value {
+  margin-left: 15px;
+}
+
+.button-user {
+  margin-top: 16px;
+  width: 192px;
+}
+
+.panel-more {
+  width: 100%;
+  text-align: center;
+  padding: 48px 0 176px;
+}
+
+.info{
+  text-align: center;
+width: 400px;
+height: 200px;
+margin: 100px auto 0;
+}

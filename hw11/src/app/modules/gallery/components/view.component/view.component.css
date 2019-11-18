@@ -1,0 +1,17 @@
+.photo-card-view img {
+  width: 600px;
+  height: 450px;
+  border-radius: 12px;
+  background-color: var(--button-outline-secondary-color-static);
+  cursor: pointer;
+}
+
+.photo-card-view div {
+  width: 600px;
+  height: 450px;
+  border-radius: 12px;
+  background-color: var(--button-outline-secondary-decore-color-static);
+  cursor: pointer;
+  margin: 0 auto 6px;
+  padding: 0;
+}

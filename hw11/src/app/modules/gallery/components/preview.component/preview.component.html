@@ -1,0 +1,19 @@
+<h1 class="title-block">
+  PHOTOS
+  <span class="title-block-line"></span>
+</h1>
+<div class="block-photo">
+  <div *ngFor="let photo of photos" class="photo-card">
+    <div class="photo-card-preview">
+      <img
+        [src]="photo.src"
+        [alt]="photo.name"
+        (click)="clickHandle(photo.id)"
+      />
+    </div>
+    <div class="photo-card-title">
+      <h4>{{ photo.name }}</h4>
+      <h6>{{ photo.data }}</h6>
+    </div>
+  </div>
+</div>

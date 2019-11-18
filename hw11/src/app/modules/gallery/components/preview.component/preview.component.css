@@ -1,0 +1,40 @@
+.title-block {
+  width: 270px;
+  text-align: left;
+  padding: 0px 0 64px;
+}
+
+.block-photo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.title-block-line {
+  border-bottom: var(--button-outline-primary-decore-color-static) solid
+    var(--main-decore-thickness);
+  width: 64px;
+  height: 48px;
+  float: right;
+}
+
+.photo-card-preview img {
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  background-color: var(--button-outline-secondary-color-static);
+  cursor: pointer;
+}
+
+.photo-card-title {
+  margin-top: 10px;
+}
+
+.photo-card-title h4 {
+  margin: 8px 24px;
+}
+
+.photo-card-title h6 {
+  font-weight: normal;
+  margin: 8px 24px 24px;
+}

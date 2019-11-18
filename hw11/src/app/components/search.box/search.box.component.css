@@ -1,0 +1,78 @@
+input {
+  border: var(--main-decore-thickness) solid var(--main-decore-color);
+  border-radius: 28px;
+  background: var(--main-bg-color) !important;
+  outline: none;
+  width: 296px;
+  height: 52px;
+  color: var(--caption-color-disable);
+  font: var(--caption-font);
+  font-size: 16px;
+  font-weight: normal;
+  padding: 0 46px 0 18px;
+}
+
+.search-btn {
+  position: relative;
+  display: inline-block;
+  min-width: 0px;
+  height: 28px;
+  vertical-align: middle;
+}
+
+.search-btn img {
+  position: absolute;
+  right: 6px;
+  top: -14px;
+  padding: 14px;
+}
+
+input::placeholder {
+  color: var(--caption-color-disable);
+}
+
+input:focus {
+  color: var(--caption-color-enable);
+}
+
+input[type="text"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+input[type="text"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+.search-helper {
+  position: absolute;
+  overflow: hidden;
+  width: 292px;
+  min-height: 6px;
+  background-color: var(--main-bg-color);
+  border: var(--main-decore-color) var(--main-decore-thickness) solid;
+  border-top: var(--main-decore-color) 1px none;
+  border-radius: 0 0 26px 26px;
+  margin-top: -1px;
+  padding: 6px 0 12px;
+}
+
+li {
+  display: block;
+  padding: 0 46px 0 18px;
+  cursor: pointer;
+}
+
+li:hover {
+  color: var(--main-color-H);
+}
