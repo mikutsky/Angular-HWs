@@ -13,18 +13,6 @@ import store from "../redux/store";
         [title]="image.title"
         [alt]="image.alt"
       />
-      <div class="img-viewer-control" [title]="image.title">
-        <div
-          controlViewer
-          class="image-viewer-previous"
-          (click)="controlHandle('PREVIOUS_IMAGE')"
-        ></div>
-        <div
-          controlViewer
-          class="image-viewer-next"
-          (click)="controlHandle('NEXT_IMAGE')"
-        ></div>
-      </div>
     </div>
   `,
   styleUrls: ["./img.viewer.css"]
@@ -33,13 +21,13 @@ export class ImgViewerComponent {
   public image: IImageRec;
 
   constructor() {
+    this.image = {
+      src: "./assets/img.service/photo.empty.jpg",
+      alt: "empty",
+      title: "empty"
+    };
     store.subscribe(() => {
-      this.image = store.getState().gallery[store.getState().selectIndex];
+      this.image = store.getState().image;
     });
-  }
-
-  public controlHandle(action: String) {
-    store.dispatch({ type: action });
-    store.getState().resetIntervalNext(store);
   }
 }

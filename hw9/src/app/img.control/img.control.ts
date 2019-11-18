@@ -1,9 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 
 import store from "../redux/store";
 import Actions from "../redux/actions";
-
-const { REFRESH_ALL } = Actions;
 
 @Component({
   selector: "img-control",
@@ -15,11 +13,6 @@ const { REFRESH_ALL } = Actions;
   `,
   styleUrls: ["./img.control.css"]
 })
-export class ImgControlComponent implements OnInit {
+export class ImgControlComponent {
   constructor() {}
-
-  public ngOnInit(): void {
-    store.dispatch({ type: REFRESH_ALL });
-    store.getState().resetIntervalNext(store);
-  }
 }
