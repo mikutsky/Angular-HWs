@@ -20,10 +20,11 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   private _changeInterval: number;
   private _hintCount: number;
   private _controledURL: string;
-  private _subscription: Subscription;
+  private _subscription = Subscription.EMPTY;
 
   public searchText: string;
   public hintList: Array<IHelpItem>;
+  public clicked: boolean = false;
 
   private _clearHint(): void {
     this.hintList = [];

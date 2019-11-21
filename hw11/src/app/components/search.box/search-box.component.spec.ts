@@ -4,6 +4,7 @@ import { SearchBoxComponent } from './search.box.component';
 import { SearchService } from 'src/app/services/search.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from 'src/app/app.routing.module';
+import { By } from '@angular/platform-browser';
 
 describe('SearchBoxComponent', () => {
     let fixture: ComponentFixture<SearchBoxComponent>,
@@ -32,5 +33,18 @@ describe('SearchBoxComponent', () => {
 
     it('Should create an instance.', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('Should add class "clicked" and then remove it.', () => {
+        const input = fixture.debugElement.query(By.css('input'));
+
+        input.triggerEventHandler('click', null);
+        fixture.detectChanges();
+
+        expect((input.nativeElement as HTMLInputElement).classList.contains('clicked')).toBeTruthy();
+
+        input.triggerEventHandler('click', null);
+        fixture.detectChanges();
+        expect(!(input.nativeElement as HTMLInputElement).classList.contains('clicked')).toBeTruthy();
     });
 });

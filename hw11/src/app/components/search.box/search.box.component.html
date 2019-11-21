@@ -5,6 +5,8 @@
     [(ngModel)]="searchText"
     (ngModelChange)="onChange()"
     (keydown.enter)="onSearch()"
+    (click)="clicked = !clicked"
+    [class.clicked]="clicked"
   />
   <div toolButton class="search-btn" (click)="onSearch()">
     <img src="assets/btn-search.png" alt="Settings" />
